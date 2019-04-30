@@ -39,44 +39,37 @@ Terraform v0.11.13
 ```
 
 
-#### List users
-`tower-cli user list`
-#### Create a new user
-`tower-cli user create --username=javierbaltar --first-name=Javier --last-name=Baltar --email=javierbaltar@mydomain.com`
-
-#### Launch a job
-`tower-cli job launch — job-template=id`
-
-#### Monitor a job
-`tower-cli job monitor id`
-
-#### Export all objects 
-`tower-cli receive — all`
-
-#### Export all objects and save to a file in json format
-`tower-cli receive — all — format json > awx.json`
-
-#### Import from a JSON file named awx.json 
-`tower-cli send assets.json`
-
-#### Copy all assets from one instance to another
-`tower-cli receive — tower-host awx.lab.com — all | tower-cli send — tower-host awx.production.com`
 
 ## API
-This section offers a basic understanding of the REST API used by AWX and Ansible Tower
-REST APIs provide access to resources (data entities) via URI paths. 
-- https://docs.ansible.com/ansible-tower/2.3.0/html/towerapi/intro.html
 
-You can visit the AWX REST API in a web browser at http://<AWX Server IP>/api/ as shown below:
-  
-![](awx-api.png)
+Terraform code is written in the HashiCorp Configuration Language (HCL) in files with the extension .tf. It is a declarative language, so your goal is to describe the infrastructure you want, and Terraform will figure out how to create it
+
+
+
 
 As an example, the following curl command retrieves the list of AWX Job templates provisioned
 ```bash
-export CREDENTIAL='admin:password'
-curl -s  -k  -u $CREDENTIAL "http://AWX-IP/api/v2/job_templates/" | jq '.results | .[] | .name '
-"IOS Change mgcp call agent"
-"Retrieve IOS Running Config to File"
+let’s run a dirt-simple web server that always returns the text “Hello, World”:7
+#!/bin/bash
+echo "Hello, World" > index.html
+nohup busybox httpd -f -p 8080 &
+This is a bash script that writes the text “Hello, World” into index.html and runs a tool called busybox (which is installed by default on Ubuntu) to fire up a web server on port 8080 to serve that file. I wrapped the busybox command with nohup and & so that the web server runs permanently in the background, while the bash script itself can exit.
+How do you get the EC2 Instance to run this script? Normally, as discussed in “Server templating tools”, you would use a tool like Packer to create a custom AMI that has the web server installed on it. Since the dummy web server in this example is just a one-liner, there is nothing to install. Therefore, in such a simple case, you can just run the script above as part of the EC2 Instance’s User Data configuration, which AWS will execute when the Instance is booting:
+resource "aws_instance" "example" {
+  ami = "ami-40d28157"
+  instance_type = "t2.micro"
+
+  user_data = <<-EOF
+              #!/bin/bash
+              echo "Hello, World" > index.html
+              nohup busybox httpd -f -p 8080 &
+              EOF
+
+  tags {
+    Name = "terraform-example"
+  }
+}
+
 ```
 Similarly, list the AWX inventories 
 ```bash
