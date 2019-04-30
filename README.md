@@ -2,9 +2,9 @@
 <p align="center">
   <a href="#Getting-Started">Getting Started</a> •
   <a href="#Installing">Installing</a> •
-  <a href="#Code">Code</a> •
-  <a href="#Notifications">Notifications</a> •
-  <a href="#Docker-Security">Docker Security</a> •
+  <a href="#Deploying-Resources">Deploying Resources</a> •
+  <a href="#Destroying-Resources">Destroying Resources</a> •
+  <a href="#Useful-Commands">Useful Commands</a> •
   <a href="#related">Related</a> •
   <a href="#Authors">Authors</a>
 </p>
@@ -40,7 +40,7 @@ Terraform v0.11.13
 
 
 
-## Code
+## Deploying Resources
 
 Terraform code is written in the HashiCorp Configuration Language (HCL) in files with the extension .tf. It is a declarative language, so your goal is to describe the infrastructure you want, and Terraform will figure out how to create it
 
@@ -86,6 +86,28 @@ resource "aws_security_group" "instance" {
 }
 ```
 
+
+```terraform
+output "public_ip" {
+  value = "${aws_instance.example.public_ip}"
+}
+
+```
+
+```bash
+> terraform apply
+
+aws_security_group.instance: Refreshing state... (ID: sg-db91dba1)
+aws_instance.example: Refreshing state... (ID: i-61744350)
+
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+public_ip = 54.174.13.5
+```
+
+## Destroying Resources
 ## Notifications
 AWX notifications provide a mechanism of signaling when AWX jobs succeed or fail. This can take the form of sending a message to a Slack channel, an email or sending an HTTP POST to another service to trigger other actions.
 In AWX the following notification types are supported:
@@ -99,7 +121,7 @@ In AWX the following notification types are supported:
 
 ![](awx-notifications.png)
 
-## Docker Security
+## Useful Commands
 Docker offers the Docker Bench for Security script (https://github.com/docker/docker-bench-security) , which checks a Docker configuration against the published hardening guide: CIS DOCKER 1.12.0 BENCHMARK V1.0.0 
 You can just download the script and run it straight from your host. Once you have run the script, you will be presented the output shown below
 
