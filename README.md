@@ -109,6 +109,11 @@ public_ip = 54.174.13.5
 
 ## Destroying Resources
 
+Terraform destroy is a command that allows you to destroy either a full stack (based on your TF files), or single resources, using the -target option
+
+```bash
+terraform destroy -target RESOURCE_TYPE.NAME -target RESOURCE_TYPE2.NAME
+```
 ## Useful Commands
 Docker offers the Docker Bench for Security script (https://github.com/docker/docker-bench-security) , which checks a Docker configuration against the published hardening guide: CIS DOCKER 1.12.0 BENCHMARK V1.0.0 
 You can just download the script and run it straight from your host. Once you have run the script, you will be presented the output shown below
