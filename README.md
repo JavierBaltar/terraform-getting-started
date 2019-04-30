@@ -10,20 +10,12 @@
 </p>
 
 ## Getting Started
-To run an Ansible Playbook with AWX, you need to configure the following items
-- AWS Credentials: User name/password or ssh key to connect to remote component
+To deploy AWS resources with Terraform, you need to configure the following items
+- AWS Credentials: set the AWS credentials for your IAM user as the environment variables AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:
+- export AWS_ACCESS_KEY_ID=(your access key id)
+- export AWS_SECRET_ACCESS_KEY=(your secret access key)
 
-In order for Terraform to be able to make changes in your AWS account, you will need to set the AWS credentials for the IAM user you created earlier as the environment variables AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:
-> export AWS_ACCESS_KEY_ID=(your access key id)
-> export AWS_SECRET_ACCESS_KEY=(your secret access key)
-NOTE
-Authentication options
-In addition to environment variables, Terraform supports the same authentication mechanisms as all AWS CLI and SDK tools. Therefore, it’ll also be able to use credentials in ~/.aws/credentials, which are automatically generated if you are run the configure command on the AWS CLI, or IAM Roles, which you can add to almost any resource in AWS. For more info, see Configuring the AWS Command Line Interface.
-
-- Project: It contains the Ansible playbook, config, roles, templates etc
-- Inventories : What servers the playbook will run against and connection specific configuration
-- Templates: Job template to associate all of the above and run the playbook
-- Launch Templates: Launching current project
+> In addition to environment variables, Terraform supports the same authentication mechanisms as all AWS CLI and SDK tools. Therefore, it will also be able to use credentials in ```~/.aws/credentials```
 
 ## Installing
 
