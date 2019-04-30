@@ -36,17 +36,16 @@ Terraform v0.11.13
 
 Terraform code is written in the HashiCorp Configuration Language (HCL) in files with the extension .tf. It is a declarative language, so your goal is to describe the infrastructure you want, and Terraform will figure out how to create it
 
-
-
-
-As an example, the following curl command retrieves the list of AWX Job templates provisioned
+As an example, let’s run a dirt-simple web server that always returns the text “Hello, World”
 ```bash
-let’s run a dirt-simple web server that always returns the text “Hello, World”:7
 #!/bin/bash
 echo "Hello, World" > index.html
 nohup busybox httpd -f -p 8080 &
+```
 This is a bash script that writes the text “Hello, World” into index.html and runs a tool called busybox (which is installed by default on Ubuntu) to fire up a web server on port 8080 to serve that file. I wrapped the busybox command with nohup and & so that the web server runs permanently in the background, while the bash script itself can exit.
 How do you get the EC2 Instance to run this script? Normally, as discussed in “Server templating tools”, you would use a tool like Packer to create a custom AMI that has the web server installed on it. Since the dummy web server in this example is just a one-liner, there is nothing to install. Therefore, in such a simple case, you can just run the script above as part of the EC2 Instance’s User Data configuration, which AWS will execute when the Instance is booting:
+
+```terraform
 resource "aws_instance" "example" {
   ami = "ami-40d28157"
   instance_type = "t2.micro"
@@ -78,6 +77,7 @@ resource "aws_security_group" "instance" {
 }
 ```
 
+Additionally, the ```http://webServerPublicIP:8080```
 
 ```terraform
 output "public_ip" {
