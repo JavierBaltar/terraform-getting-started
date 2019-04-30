@@ -108,18 +108,6 @@ public_ip = 54.174.13.5
 ```
 
 ## Destroying Resources
-## Notifications
-AWX notifications provide a mechanism of signaling when AWX jobs succeed or fail. This can take the form of sending a message to a Slack channel, an email or sending an HTTP POST to another service to trigger other actions.
-In AWX the following notification types are supported:
-- Email
-- Slack
-- Hipchat
-- Pagerduty
-- Twilio
-- IRC
-- Webhook (POST)
-
-![](awx-notifications.png)
 
 ## Useful Commands
 Docker offers the Docker Bench for Security script (https://github.com/docker/docker-bench-security) , which checks a Docker configuration against the published hardening guide: CIS DOCKER 1.12.0 BENCHMARK V1.0.0 
