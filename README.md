@@ -1,7 +1,7 @@
 # terraform-getting-started
 <p align="center">
   <a href="#Getting-Started">Getting Started</a> •
-  <a href="#Tower-CLI">Tower CLI</a> •
+  <a href="#Installing">Installing</a> •
   <a href="#API">API</a> •
   <a href="#Notifications">Notifications</a> •
   <a href="#Docker-Security">Docker Security</a> •
@@ -17,9 +17,16 @@ To run an Ansible Playbook with AWX, you need to configure the following items
 - Templates: Job template to associate all of the above and run the playbook
 - Launch Templates: Launching current project
 
-## Tower CLI
-Tower-cli is a command line tool for Ansible AWX. It can also be used as a client library for other python apps, or as a reference for others developing API interactions with Tower’s REST API.
-- https://docs.ansible.com/ansible-tower/latest/html/towerapi/tower_cli.html 
+## Installing
+
+You can download Terraform from the Terraform homepage. Click the download link, select the appropriate package for your operating system, download the zip archive, and unzip it into the directory where you want Terraform to be installed. The archive will extract a single binary called terraform, which you’ll want to add to your PATH environment variable.
+To check if things are working, run the terraform command, and you should see the usage instructions:
+
+```bash
+terraform --version
+Terraform v0.11.13
+```
+
 
 #### List users
 `tower-cli user list`
