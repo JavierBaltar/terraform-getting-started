@@ -2,7 +2,7 @@
 <p align="center">
   <a href="#Getting-Started">Getting Started</a> •
   <a href="#Installing">Installing</a> •
-  <a href="#API">API</a> •
+  <a href="#Code">Code</a> •
   <a href="#Notifications">Notifications</a> •
   <a href="#Docker-Security">Docker Security</a> •
   <a href="#related">Related</a> •
