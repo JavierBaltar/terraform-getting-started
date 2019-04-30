@@ -47,7 +47,7 @@ How do you get the EC2 Instance to run this script? Normally, as discussed in â€
 
 ```terraform
 resource "aws_instance" "example" {
-  ami = "ami-40d28157"
+  ami = "ami-08d658f84a6d84a80"
   instance_type = "t2.micro"
 
   user_data = <<-EOF
