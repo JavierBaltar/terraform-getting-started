@@ -40,7 +40,7 @@ Terraform v0.11.13
 
 
 
-## API
+## Code
 
 Terraform code is written in the HashiCorp Configuration Language (HCL) in files with the extension .tf. It is a declarative language, so your goal is to describe the infrastructure you want, and Terraform will figure out how to create it
 
@@ -71,16 +71,19 @@ resource "aws_instance" "example" {
 }
 
 ```
-Similarly, list the AWX inventories 
-```bash
-curl -s -k -u $CREDENTIAL http://AWX-IP/api/v2/inventories/ | jq '.results | .[] | .name'
 
-"Customer Webservers"
-"Customer Databases"
-```
-Create a new AWX user
-```bash
-curl -H "Content-type: application/json" -d "$(jo username=jbaltar first_name=Javier last_name=Baltar email=jbaltar@mydomain.com password=dontshareit)" -u $CREDENTIAL http://AWX-IP/api/v2/users/
+You need to do one more thing before this web server works. By default, AWS does not allow any incoming or outgoing traffic from an EC2 Instance. To allow the EC2 Instance to receive traffic on port 8080, you need to create a security group:
+
+```terraform
+resource "aws_security_group" "instance" {
+  name = "terraform-example-instance"
+  ingress {
+    from_port = 8080
+    to_port = 8080
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
 ```
 
 ## Notifications
