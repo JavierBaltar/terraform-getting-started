@@ -10,10 +10,10 @@
 </p>
 
 ## Getting Started
-To deploy AWS resources with Terraform, you need to configure the following items
+To deploy AWS resources with Terraform, you need to configure the following items:
 - AWS Credentials: set the AWS credentials for your IAM user as the environment variables AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:
-- export AWS_ACCESS_KEY_ID=(your access key id)
-- export AWS_SECRET_ACCESS_KEY=(your secret access key)
+-- export AWS_ACCESS_KEY_ID=(your access key id)
+-- export AWS_SECRET_ACCESS_KEY=(your secret access key)
 
 > In addition to environment variables, Terraform supports the same authentication mechanisms as all AWS CLI and SDK tools. Therefore, it will also be able to use credentials in ```~/.aws/credentials```
 
