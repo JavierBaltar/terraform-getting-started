@@ -20,7 +20,7 @@ export AWS_SECRET_ACCESS_KEY=(your secret access key)
 ## Installing
 
 You can download Terraform from the Terraform homepage
-* [Terraform Download](https://www.terraform.io) - Terraform Download
+* [Terraform](https://www.terraform.io) - Terraform Download
 
 Click the download link, select the appropriate package for your operating system, download the zip archive, and unzip it into the directory where you want Terraform to be installed. 
 Run the terraform command, and you should see the usage options:
