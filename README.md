@@ -20,20 +20,52 @@ export AWS_SECRET_ACCESS_KEY=(your secret access key)
 ## Installing
 
 You can download Terraform from the Terraform homepage
-- https://www.terraform.io
+* [Terraform Download](https://www.terraform.io) - Terraform Download
 
-Click the download link, select the appropriate package for your operating system, download the zip archive, and unzip it into the directory where you want Terraform to be installed. The archive will extract a single binary called terraform, which you’ll want to add to your PATH environment variable.
-Run the terraform command, and you should see the usage instructions:
+Click the download link, select the appropriate package for your operating system, download the zip archive, and unzip it into the directory where you want Terraform to be installed. 
+Run the terraform command, and you should see the usage options:
 
 ```bash
-terraform --version
-Terraform v0.11.13
+terraform
+Usage: terraform [-version] [-help] <command> [args]
+
+The available commands for execution are listed below.
+The most common, useful commands are shown first, followed by
+less common or more advanced commands. If you're just getting
+started with Terraform, stick with the common commands. For the
+other commands, please read the help and docs before usage.
+
+Common commands:
+    apply              Builds or changes infrastructure
+    console            Interactive console for Terraform interpolations
+    destroy            Destroy Terraform-managed infrastructure
+    env                Workspace management
+    fmt                Rewrites config files to canonical format
+    get                Download and install modules for the configuration
+    graph              Create a visual graph of Terraform resources
+    import             Import existing infrastructure into Terraform
+    init               Initialize a Terraform working directory
+    output             Read an output from a state file
+    plan               Generate and show an execution plan
+    providers          Prints a tree of the providers used in the configuration
+    push               Upload this Terraform module to Atlas to run
+    refresh            Update local state file against real resources
+    show               Inspect Terraform state or plan
+    taint              Manually mark a resource for recreation
+    untaint            Manually unmark a resource as tainted
+    validate           Validates the Terraform files
+    version            Prints the Terraform version
+    workspace          Workspace management
+
+All other commands:
+    debug              Debug output management (experimental)
+    force-unlock       Manually unlock the terraform state
+    state              Advanced state management
 ```
 
 ## Deploying Resources
 
-Terraform code is written in the HashiCorp Configuration Language (HCL) in files with the extension .tf. It is a declarative language, so your goal is to describe the infrastructure you want, and Terraform will figure out how to create it
-
+Terraform code is written in the HashiCorp Configuration Language (HCL), files with the extension .tf. 
 As an example, the following bash script runs a tool called busybox to host a web server listening on port 8080
 ```bash
 #!/bin/bash
@@ -41,7 +73,7 @@ echo "This webServer is deployed using Terraform!" > index.html
 nohup busybox httpd -f -p 8080 &
 ```
 
-Terraform deployment file
+Terraform deployment .rt file
 
 ```terraform
 resource "aws_instance" "example" {
@@ -98,7 +130,7 @@ Outputs:
 webserver_public_ip = 54.176.21.6
 ```
 
-Finally, test the server deployment ``curl http://webServerPublicIP:8080```
+Finally, test the server deployment ```curl http://webServerPublicIP:8080```
 
 ## Destroying Resources
 
