@@ -77,31 +77,32 @@ resource "aws_security_group" "instance" {
 }
 ```
 
-Additionally, the ```http://webServerPublicIP:8080```
+Additionally, the ```curl http://webServerPublicIP:8080```
 
 ```terraform
-output "public_ip" {
+output "webserver_public_ip" {
   value = "${aws_instance.example.public_ip}"
 }
 
 ```
+The ```terraform apply``` command applies the configuration changes
 
 ```bash
-> terraform apply
+terraform apply
 
-aws_security_group.instance: Refreshing state... (ID: sg-db91dba1)
-aws_instance.example: Refreshing state... (ID: i-61744350)
+aws_security_group.instance: Refreshing state... (ID: sg-db63663du3)
+aws_instance.example: Refreshing state... (ID: i-618363030)
 
 Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
 
 Outputs:
 
-public_ip = 54.174.13.5
+webserver_public_ip = 54.176.21.6
 ```
 
 ## Destroying Resources
 
-Terraform destroy is a command that allows you to destroy either a full stack (based on your TF files), or single resources, using the -target option
+Terraform destroy is a command that allows you to destroy either a full stack or single resources, using the ```-target option```
 
 ```bash
 terraform destroy -target RESOURCE_TYPE.NAME -target RESOURCE_TYPE2.NAME
